@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortest Path Finder</title>
+    <style>
+        /* 전체 레이아웃 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+        
+        /* 헤더 스타일 */
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            margin: 0;
+        }
+
+        /* 폼 컨테이너 */
+        .form-container {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* 결과 섹션 */
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+        }
+
+        .result img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        /* 오류 메시지 */
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shortest Path Finder</h1>
+
+    <div class="form-container">
+        <form method="POST">
+            <label for="source">시작 노드:</label>
+            <input type="text" id="source" name="source" required placeholder="예: A">
+            
+            <label for="target">도착 노드:</label>
+            <input type="text" id="target" name="target" required placeholder="예: V">
+            
+            <button type="submit">최단 경로 찾기</button>
+        </form>
+    </div>
+
+    {% if shortest_path %}
+        <div class="result">
+            <h2>결과</h2>
+            <p>최단 경로: <strong>{{ shortest_path }}</strong></p>
+            <p>최단 거리: <strong>{{ shortest_distance }}</strong></p>
+            <img src="{{ image }}" alt="Shortest Path">
+        </div>
+    {% elif error %}
+        <div class="result">
+            <h2 class="error">오류</h2>
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
